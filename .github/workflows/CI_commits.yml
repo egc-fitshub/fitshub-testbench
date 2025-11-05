@@ -4,7 +4,7 @@
 # It runs on every push and pull request to ensure consistent commit history.
 # ----------------------------------------------------------------------------
 
-name: Commits Syntax Checker
+name: Conventional Commits Syntax Checker
 
 on:
   push:
