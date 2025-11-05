@@ -27,15 +27,3 @@ jobs:
             }}
         run: |
           curl "$deploy_url"
-
-      - name: Test deployment
-        env:
-          test_url: |-
-            ${{
-                github.ref_name == 'main' && vars.RENDER_DEPLOY_MAIN_URL
-            ||  github.ref_name == 'integration-trunk' && vars.RENDER_DEPLOY_DEV_URL
-            ||  github.ref_name == 'trunk-g1' && vars.RENDER_DEPLOY_G1_URL
-            ||  github.ref_name == 'trunk-g2' && vars.RENDER_DEPLOY_G2_URL
-            }}
-        run: |
-          curl "$test_url"
