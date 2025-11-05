@@ -23,7 +23,7 @@ COPY core/ ./core
 COPY migrations/ ./migrations
 
 # Copy requirements.txt into the working directory /app
-COPY requirements.txt .
+# COPY requirements.txt .
 
 # Removes cache at the build stage
 RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
