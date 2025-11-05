@@ -29,10 +29,6 @@ COPY requirements.txt .
 RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
     find . -type f -name "*.pyc" -exec rm -f {} +
 
-# Renew SSL certificate
-RUN chmod +x ../scripts/ssl_renew.sh
-RUN ../scripts/ssl_renew.sh
-
 # Copy entrypoint and set execution permissions
 COPY docker/entrypoints/render_entrypoint.sh /app/render_entrypoint.sh
 RUN chmod +x /app/render_entrypoint.sh
