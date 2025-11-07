@@ -35,10 +35,10 @@ jobs:
       mariadb:
         image: mariadb:12.0.2
         env:
-          MARIADB_ROOT_PASSWORD: ${{ env.MARIADB_ROOT_PASSWORD }}
-          MARIADB_DATABASE: ${{ env.MARIADB_DATABASE }}
-          MARIADB_USER: ${{ env.MARIADB_USER }}
-          MARIADB_PASSWORD: ${{ env.MARIADB_PASSWORD }}
+          MARIADB_ROOT_PASSWORD: ${{ secret.MARIADB_ROOT_PASSWORD }}
+          MARIADB_DATABASE: ${{ secret.MARIADB_DATABASE }}
+          MARIADB_USER: ${{ secret.MARIADB_USER }}
+          MARIADB_PASSWORD: ${{ secret.MARIADB_PASSWORD }}
         ports:
           - 3306:3306
         options: >-
