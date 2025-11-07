@@ -36,7 +36,7 @@ jobs:
         image: mariadb:12.0.2
         env:
           MARIADB_ROOT_PASSWORD: ${{ secrets.MARIADB_ROOT_PASSWORD }}
-          MARIADB_DATABASE: ${{ secrets.MARIADB_DATABASE }}
+          MARIADB_DATABASE: ${{ secrets.MARIADB_TEST_DATABASE }}
           MARIADB_USER: ${{ secrets.MARIADB_USER }}
           MARIADB_PASSWORD: ${{ secrets.MARIADB_PASSWORD }}
         ports:
