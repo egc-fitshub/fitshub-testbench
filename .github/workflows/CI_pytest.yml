@@ -49,7 +49,7 @@ jobs:
 
     steps:
 
-      #Step 1: Show which branch you are working in
+      # Step 1: Show which branch you are working in
       - name: Print Branch Name
         run: echo "Workflow running on branch: ${{ github.ref_name }}"
       
