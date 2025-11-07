@@ -1,0 +1,17 @@
+#!/bin/sh
+
+remote="$1"
+url="$2"
+
+echo "--- Running pytest tests locally before pushing to $remote ---"
+
+pytest app/modules/ --ignore-glob='*selenium*'
+
+if [ $? -ne 0 ]; then
+    echo " " >&2
+    echo >&2 "PUSH RECHAZADO: Las pruebas de pytest han fallado."
+    exit 1
+fi
+
+echo "Pruebas superadas. Iniciando push..."
+exit 0
