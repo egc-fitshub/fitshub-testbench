@@ -1,0 +1,61 @@
+name: Semantic Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python and Install dependencies
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install -r requirements.txt
+
+      - name: Calculate next version
+        id: version_calc
+        run: |
+          VERSION=$(semantic-release print-version --skip-publish)
+          echo "NEW_VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if there is a new version to publish
+        id: check_version
+        run: |
+          if [ "${{ steps.version_calc.outputs.NEW_VERSION }}" != "None" ]; then
+            echo "SHOULD_RELEASE=true" >> $GITHUB_OUTPUT
+          else
+            echo "SHOULD_RELEASE=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit new version in .version
+        if: steps.check_version.outputs.SHOULD_RELEASE == 'true'
+        run: |
+          NEW_VERSION=${{ steps.version_calc.outputs.NEW_VERSION }}
+          echo "$NEW_VERSION" > .version
+
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .version
+          git commit -m "chore(version): bump version to $NEW_VERSION [skip ci]"
+          git push
+
+      - name: Publish Tag and Release in Github
+        if: steps.check_version.outputs.SHOULD_RELEASE == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          semantic-release publish --skip-ci

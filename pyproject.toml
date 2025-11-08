@@ -47,7 +47,22 @@ known-first-party = ["fitshub"]
 quote-style = "double"
 indent-style = "space"
 
+# ------------------------------
+# Versioning and release control
+# ------------------------------
 
+[tool.semantic_release]
+branch = "main"
+
+commit_version_scheme = "semver"
+tag_commit = true
+commit_text = "chore(release): bump version to {version} [skip ci]"
+version_source = "tag"
+
+plugins = [
+    "semantic_release.ext.github",
+    "semantic_release.ext.git",
+]
 
 
 
