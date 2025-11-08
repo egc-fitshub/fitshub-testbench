@@ -54,11 +54,11 @@ indent-style = "space"
 [tool.semantic_release]
 branch = "main"
 
-version_toml = ["pyproject.toml:project.version"]
-
 commit_version_scheme = "semver"
 tag_commit = true
 commit_text = "chore(release): bump version to {version} [skip ci]"
+
+version_source = tag
 
 plugins = [
     "semantic_release.ext.github",
