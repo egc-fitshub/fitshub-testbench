@@ -1,7 +1,10 @@
 name: Semantic Release
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Codacy CI"]
+    types:
+      - completed
     branches:
       - main
 
@@ -10,6 +13,8 @@ jobs:
     name: Create Tag and Release
     runs-on: ubuntu-latest
 
+    if: github.event.workflow_run.conclusion == 'success'
+
     permissions:
       contents: write
     
@@ -17,6 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
       
       - name: Bump version and create tag based on commits
