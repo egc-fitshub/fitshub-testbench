@@ -1,0 +1,22 @@
+name: Work Item
+description: Standard work item template
+labels: ["tipo: WI"]
+assignees: ["mquirosq"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done and why?
+      placeholder: Short summary of the task.
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Additional context, requirements, or clarifications.
+      placeholder: Add any background details here.
+    validations:
+      required: false
