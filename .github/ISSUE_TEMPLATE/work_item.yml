@@ -2,7 +2,7 @@ name: Work Item
 description: Standard work item template
 labels: ["tipo: WI"]
 projects: [egc-fitshub/2]
-assignees: ["mquirosq"]
+assignees: []
 body:
   - type: textarea
     id: description

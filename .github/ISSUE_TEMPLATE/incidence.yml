@@ -1,6 +1,5 @@
 name: Incidencia
 description: Report a bug or incident
-title: ""
 labels: ["tipo: incidencia"]
 projects: [egc-fitshub/2]
 assignees: ["mquirosq", "javiarellanoo"]
