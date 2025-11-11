@@ -2,7 +2,8 @@
 
 # Este archivo debe ir en el local de cada desarrollador. Todos tenemos una carpeta .git que tiene dentro una carpeta hooks, en la que tenemos un pre-push.sample. 
 # Lo que tenemos que hacer para tenerlo en local es desde la carpeta raiz del proyecto: "cd .git/hooks/" "cp pre-push.sample pre-push" "nano pre-push" 
-# Y en ese archivo copias el contenido. A partir de ese momento al hacer el comando de push te debe correr los test y cancerlarlo si no pasan
+# Y en ese archivo copias el contenido. Lueog le das permisos con el comando chmod +x .git/hooks/pre-push
+# A partir de ese momento al hacer el comando de push te debe correr los test y cancerlarlo si no pasan. Siempre desde el entorno virtual
 
 remote="$1"
 url="$2"
