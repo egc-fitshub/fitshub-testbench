@@ -4,7 +4,20 @@ repos:
   - id: conventional-pre-commit
     name: conventional-pre-commit
     language: python
-    entry: conventional-pre-commit
+    entry: python
+    args:
+      - -c
+      - |
+          import subprocess, sys
+          if subprocess.call(
+              ["git", "rev-parse", "-q", "--verify", "MERGE_HEAD"],
+              stdout=subprocess.DEVNULL,
+              stderr=subprocess.DEVNULL,
+          ) == 0:
+              raise SystemExit(0)
+          raise SystemExit(
+              subprocess.call(["conventional-pre-commit", *sys.argv[1:]])
+          )
     additional_dependencies:
       - conventional-pre-commit==2.4.0
     stages: [commit-msg]
