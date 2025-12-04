@@ -1,7 +1,10 @@
-# .pre-commit-config.yaml
 repos:
--   repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v2.4.0  # Usa la última versión
-    hooks:
-    -   id: conventional-pre-commit
-        stages: [commit-msg]
+- repo: local
+  hooks:
+  - id: conventional-pre-commit
+    name: conventional-pre-commit
+    language: python
+    entry: conventional-pre-commit
+    additional_dependencies:
+      - conventional-pre-commit==2.4.0
+    stages: [commit-msg]
