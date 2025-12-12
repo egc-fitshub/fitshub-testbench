@@ -30,8 +30,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG=${{ github.event.release.tag_name }}
+          TAG=$(gh release view --json tagName --jq .tagName)
           IMAGE=${{ secrets.DOCKER_USER }}/fitshub
 
           docker build --build-arg VERSION_TAG=$TAG -t $IMAGE:$TAG -f docker/images/Dockerfile.prod .
