@@ -7,8 +7,12 @@
 name: Publish image in Docker Hub
 
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["Semantic Release"]
+    types:
+      - completed
+    branches:
+      - main
 
 jobs:
   push_to_registry:
